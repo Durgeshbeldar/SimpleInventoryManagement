@@ -123,3 +123,4 @@ S:\Office Work\Monocept Training\Assignments\InventoryManagementApplication\Inve
 S:\Office Work\Monocept Training\Assignments\InventoryManagementApplication\InventoryManagementApplication\obj\Debug\net8.0\InventoryManagementApplication.pdb
 S:\Office Work\Monocept Training\Assignments\InventoryManagementApplication\InventoryManagementApplication\obj\Debug\net8.0\InventoryManagementApplication.genruntimeconfig.cache
 S:\Office Work\Monocept Training\Assignments\InventoryManagementApplication\InventoryManagementApplication\obj\Debug\net8.0\ref\InventoryManagementApplication.dll
+S:\Office Work\Monocept Training\Assignments\InventoryManagementApplication\InventoryManagementApplication\obj\Debug\net8.0\InventoryManagementApplication.sourcelink.json

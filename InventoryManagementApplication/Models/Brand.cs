@@ -7,11 +7,17 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApplication.Models
 {
-    internal class Brand
+    public class Brand
     {
         [Key]
         public int BrandId { get; set; }
-        public string Name { get; set; }   
+       
+        public string Name { get; set; }
 
+        public override string ToString()
+        {
+            return $"Brand Id : {BrandId}\n" +
+                $"Brand Name : {Name}\n";
+        }
     }
 }

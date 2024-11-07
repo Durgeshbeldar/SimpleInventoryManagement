@@ -17,7 +17,7 @@ namespace InventoryManagementApplication.Presentation
             while (true) 
             {
                 DisplayMainMenu();
-                int choice = UserInputs.GetUserChoice(1,9);
+                int choice = UserInputs.GetUserChoice(1,11);
                 switch (choice)
                 {
                     case 1:
@@ -28,6 +28,15 @@ namespace InventoryManagementApplication.Presentation
                         break;
                     case 3:
                         ManageWholesalerUI.ManageWholesalers();
+                        break;
+                    case 4:
+                        ManageProductUI.ManageProducts();
+                        break;
+                    case 5:
+                        ManageCategoryUI.ManageCategories();
+                        break;
+                    case 6:
+                        ManageBrandUI.ManageBrands();
                         break;
                     case 9:
                         Console.WriteLine("Log Out From Admin Inventory Dashboard");

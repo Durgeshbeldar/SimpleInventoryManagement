@@ -44,5 +44,6 @@ namespace InventoryManagementApplication.Presentation
                 return GetValidIntegerValue(entityName);
             }
         }
+
     }
 }

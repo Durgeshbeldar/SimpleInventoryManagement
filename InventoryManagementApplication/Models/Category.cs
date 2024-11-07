@@ -11,6 +11,13 @@ namespace InventoryManagementApplication.Models
     {
         [Key]
         public int CategoryId { get; set; } 
+        
         public string Name { get; set; }
+
+        public override string ToString()
+        {
+            return $"Category ID : {CategoryId}\n" +
+                $"Category Name : {Name}\n";
+        }
     }
 }

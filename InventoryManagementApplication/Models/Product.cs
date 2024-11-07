@@ -24,5 +24,13 @@ namespace InventoryManagementApplication.Models
 
         [ForeignKey("Brand")]
         public int BrandId { get; set; }
+
+        public override string ToString()
+        {
+            return $"\nProduct Id: {ProductId}\n" +
+                $"Product Name : {Name}\n" +
+                $"Purchased Price : {PurchasedPrice}\n" +
+                $"Max Retail Price : {MRP}\n";
+        }
     }
 }
