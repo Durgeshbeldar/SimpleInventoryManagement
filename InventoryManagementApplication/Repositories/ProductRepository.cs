@@ -11,7 +11,8 @@ namespace InventoryManagementApplication.Repositories
 {
     internal class ProductRepository
     {
-        private readonly InventoryContext _inventoryContext;
+        private InventoryContext _inventoryContext;
+        
 
         public ProductRepository()
         {
@@ -100,6 +101,8 @@ namespace InventoryManagementApplication.Repositories
         public Product GetProductById(int productId)
         {
             return _inventoryContext.Products
+                .Include(p => p.Category)  // Eagerly load the Category
+                .Include(p => p.Brand)     // Eagerly load the Brand
                 .FirstOrDefault(p => p.ProductId == productId);
         }
 
@@ -124,5 +127,7 @@ namespace InventoryManagementApplication.Repositories
             var products = GetAllWithCategoryAndBrand();
             return products.Where(p => p.CategoryId == categoryId && p.BrandId == brandId).ToList();
         }
+
+        
     }
 }

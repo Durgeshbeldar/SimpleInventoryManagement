@@ -2,7 +2,9 @@
 using InventoryManagementApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +13,7 @@ namespace InventoryManagementApplication.Presentation
     internal class ManageProductUI
     {
         static ProductController productController = new ProductController();
-
+      
         public static void ManageProducts()
         {
             while (true)
@@ -56,8 +58,6 @@ namespace InventoryManagementApplication.Presentation
         {
             try
             {
-                Console.WriteLine("Enter Product Details:");
-
                 Console.WriteLine("Enter Product Name:");
                 string name = Console.ReadLine();
 
@@ -65,9 +65,11 @@ namespace InventoryManagementApplication.Presentation
 
                 double mrp = UserInputs.GetValidIntegerValue("MRP");
 
-                int categoryId = UserInputs.GetValidIntegerValue("Category ID");
 
-                int brandId = UserInputs.GetValidIntegerValue("Brand ID");
+
+                int categoryId = GetCategory();
+
+                int brandId = GetBrand();
 
                 Product product = new Product()
                 {
@@ -88,14 +90,91 @@ namespace InventoryManagementApplication.Presentation
             }
         }
 
+        static void DisplayCategories(List<Category> categories)
+        {
+            int count = 0;
+            foreach (Category category in categories)
+            {
+                ++count;
+                Console.WriteLine($"{count}. {category.Name}");
+            }
+        }
+        static int GetCategory()
+        {
+            CategoryController categoryController = new CategoryController();
+            string isExisting = UserInputs.GetValidYesNoInput("Category");
+            int userCategory;
+            if(isExisting == "yes")
+            {
+                List <Category> categories = categoryController.GetAllCategories();
+                DisplayCategories(categories);
+                userCategory = UserInputs.GetUserChoice(1, categories.Count) -1;
+                Console.WriteLine("Category Selected");
+                return categories[userCategory].CategoryId;
+            }
+            try
+            {
+                Console.WriteLine("Enter New Category Name :");
+                string categoryName = Console.ReadLine();
+                Category newCategory = new Category() { Name = categoryName };
+                string result = categoryController.AddCategory(newCategory);
+                Console.WriteLine(result);
+                Category newCategoryRetrival = categoryController.GetCategoryByName(categoryName);
+                Console.WriteLine("Category Selected");
+                return newCategoryRetrival.CategoryId;
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return GetCategory();
+            }
+        }
+
+        static int GetBrand()
+        {
+            BrandController brandController = new BrandController();
+            string isExisting = UserInputs.GetValidYesNoInput("Brand");
+            int userBrand;
+
+            if (isExisting == "yes")
+            {
+                List<Brand> brands = brandController.GetAllBrands();
+                int count = 0;
+                foreach (Brand brand in brands)
+                {
+                    ++count;
+                    Console.WriteLine($"{count}. {brand.Name}");
+                }
+                userBrand = UserInputs.GetUserChoice(1, brands.Count) - 1;
+                Console.WriteLine("Brand Selected");
+                return brands[userBrand].BrandId;
+            }
+
+            try
+            {
+                Console.WriteLine("Enter New Brand Name:");
+                string brandName = Console.ReadLine();
+                Brand newBrand = new Brand() { Name = brandName };
+                string result = brandController.AddBrand(newBrand);
+                Console.WriteLine(result);
+
+                Brand newBrandRetrieval = brandController.GetBrandByName(brandName);
+                Console.WriteLine("Brand Selected");
+                return newBrandRetrieval.BrandId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return GetBrand();
+            }
+        }
+
+
         // Update Product
         static void UpdateProduct()
         {
             try
             {
                 int productId = UserInputs.GetValidIntegerValue("Product ID");
-
-                Console.WriteLine("Enter New Details for Product:");
 
                 Console.WriteLine("Enter Product Name:");
                 string name = Console.ReadLine();
@@ -104,9 +183,9 @@ namespace InventoryManagementApplication.Presentation
 
                 double mrp = UserInputs.GetValidIntegerValue("MRP");
 
-                int categoryId = UserInputs.GetValidIntegerValue("Category ID");
+                int categoryId = GetCategory();
 
-                int brandId = UserInputs.GetValidIntegerValue("Brand ID");
+                int brandId = GetBrand();
 
                 Product product = new Product()
                 {
@@ -161,6 +240,17 @@ namespace InventoryManagementApplication.Presentation
             }
         }
 
+
+        static void DisplayProduct(Product product)
+        {
+           Console.WriteLine($"Product Found and Details Are :\n\n" +
+               $"Product Name : {product.Name}\n" +
+               $"Category : {product.Category.Name}\n" +
+               $"Brand : {product.Brand.Name}\n" +
+               $"Max Retail Price : {product.MRP}\n" +
+               $"Wholesale Price : {product.PurchasedPrice}\n");
+
+        }
         // Search Product by ID
         static void SearchProduct()
         {
@@ -172,7 +262,7 @@ namespace InventoryManagementApplication.Presentation
 
                 if (product != null)
                 {
-                    Console.WriteLine("Product Found:\n" + product);
+                    DisplayProduct(product);
                     return;
                 }
                 throw new Exception("Product Not Found.");
@@ -187,8 +277,13 @@ namespace InventoryManagementApplication.Presentation
         {
             try
             {
-                int categoryId = UserInputs.GetValidIntegerValue("Category ID");
+                Console.WriteLine("Select Categories From Following List :");
+                CategoryController controller = new CategoryController();
+                List<Category> categories = controller.GetAllCategories();
+                DisplayCategories(categories);
+                int choice = UserInputs.GetUserChoice(1, categories.Count);
 
+                int categoryId = categories[choice-1].CategoryId;
                 var products = productController.SearchByCategory(categoryId);
 
                 if (products != null && products.Count > 0)
@@ -205,13 +300,28 @@ namespace InventoryManagementApplication.Presentation
             }
         }
 
+        public static void DisplayBrand(List<Brand> brands)
+        {
+            int count = 0;
+            brands.ForEach(brand =>
+            {
+                ++count;
+                Console.WriteLine($"{count}. {brand.Name}");
+            });
+        }
+
         // Search by Brand
         static void SearchByBrand()
         {
             try
             {
-                int brandId = UserInputs.GetValidIntegerValue("Brand ID");
+                Console.WriteLine("Select Brand From Following List :");
+                BrandController controller = new BrandController();
+                List<Brand> brands = controller.GetAllBrands();
 
+                DisplayBrand(brands);
+                int choice = UserInputs.GetUserChoice(1, brands.Count);
+                int brandId = brands[choice-1].BrandId;
                 var products = productController.SearchByBrand(brandId);
 
                 if (products != null && products.Count > 0)
@@ -234,14 +344,24 @@ namespace InventoryManagementApplication.Presentation
         {
             try
             {
-                int categoryId = UserInputs.GetValidIntegerValue("Category ID");
-                int brandId = UserInputs.GetValidIntegerValue("Brand ID");
+                BrandController brandController = new BrandController();
+                CategoryController categoryController = new CategoryController();
+                List<Brand> brands = brandController.GetAllBrands();
+                List<Category> categories = categoryController.GetAllCategories();
+                Console.WriteLine("Select Category To Filtered Products :");
+                DisplayCategories(categories);
+                int choice1 = UserInputs.GetUserChoice(1, categories.Count);
+                Console.WriteLine("Select Brand For Filtered Products :");
+                DisplayBrand(brands);
+                int choice2 = UserInputs.GetValidIntegerValue("Brand ID");
+                int categoryId = categories[choice1 - 1].CategoryId;
+                int brandId = brands[choice2- 1].BrandId;
 
                 var products = productController.SearchByCategoryAndBrand(categoryId, brandId);
 
                 if (products != null && products.Count > 0)
                 {
-                    Console.WriteLine($"\nProducts Found for Category {categoryId} and Brand {brandId}: {products.Count}\n");
+                    Console.WriteLine($"\nProducts Found for (Category : {products[0].Category.Name} and Brand : {products[0].Brand.Name}): {products.Count}\n");
                     products.ForEach(product => Console.WriteLine(product));
                     return;
                 }

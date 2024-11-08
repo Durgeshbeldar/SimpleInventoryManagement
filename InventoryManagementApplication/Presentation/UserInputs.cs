@@ -45,5 +45,21 @@ namespace InventoryManagementApplication.Presentation
             }
         }
 
+        public static string GetValidYesNoInput(string entityName)
+        {
+            try
+            {
+                Console.WriteLine($"Do You Want to Select Existing {entityName} ? Enter Yes OR No :");
+                string userChoice = Console.ReadLine().ToLower();
+                if (userChoice != "yes" && userChoice != "no")
+                    throw new InvalidUserInputException("Please Select Yes or No Only...!");
+                return userChoice;
+            }catch(InvalidUserInputException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return GetValidYesNoInput(entityName);
+            }
+        }
+
     }
 }
