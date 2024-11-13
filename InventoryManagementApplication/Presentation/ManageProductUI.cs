@@ -64,9 +64,6 @@ namespace InventoryManagementApplication.Presentation
                 double purchasedPrice = UserInputs.GetValidIntegerValue("Purchased Price");
 
                 double mrp = UserInputs.GetValidIntegerValue("MRP");
-
-
-
                 int categoryId = GetCategory();
 
                 int brandId = GetBrand();

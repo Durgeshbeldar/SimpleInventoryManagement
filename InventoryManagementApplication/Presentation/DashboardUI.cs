@@ -38,6 +38,11 @@ namespace InventoryManagementApplication.Presentation
                     case 6:
                         ManageBrandUI.ManageBrands();
                         break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+
                     case 9:
                         Console.WriteLine("Log Out From Admin Inventory Dashboard");
                         return;
@@ -60,8 +65,8 @@ namespace InventoryManagementApplication.Presentation
                 $"4.  Manage Products\n" +
                 $"5.  Manage Product Categories\n" +
                 $"6.  Manage Product Brands\n" +
-                $"7.  Create New Sale\n" +
-                $"8.  Create Purchased\n" +
+                $"7.  Create New Sale Invoice\n" +
+                $"8.  Create Purchased Invoice\n" +
                 $"9.  View/Manage Stocks\n" +
                 $"10. View Profile\n" +
                 $"11. Logout\n");   

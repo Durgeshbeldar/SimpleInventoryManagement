@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace InventoryManagementApplication.Presentation
 {
@@ -59,6 +60,43 @@ namespace InventoryManagementApplication.Presentation
                 Console.WriteLine(ex.Message);
                 return GetValidYesNoInput(entityName);
             }
+        }
+
+        public static int GetOneOrTwo()
+        {
+            Console.WriteLine("Enter Your Input :");
+            int userInput;
+            try
+            {
+                userInput = int.Parse(Console.ReadLine());
+                if (userInput == 1 || userInput == 2)
+                    return userInput;
+                throw new InvalidUserInputException("Invalid Input, Please Choose One OR Two Only");
+            }catch(InvalidUserInputException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return GetOneOrTwo();
+            }
+        }
+
+        public static DateTime GetValidDate()
+        {
+            DateTime validDate;
+            string userInput;
+
+            while (true)
+            {
+                Console.WriteLine("Please enter a date (in format MM/dd/yyyy):");
+                userInput = Console.ReadLine();
+
+                if (IsValidDate(userInput, out validDate))
+                return validDate;
+                Console.WriteLine("The date entered is invalid. Please try again.");
+            }
+        }
+        static bool IsValidDate(string dateInput, out DateTime parsedDate)
+        {
+            return DateTime.TryParseExact(dateInput, "MM/dd/yyyy", null, System.Globalization.DateTimeStyles.None, out parsedDate);
         }
 
     }

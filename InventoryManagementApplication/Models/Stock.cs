@@ -19,13 +19,15 @@ namespace InventoryManagementApplication.Models
         public int TotalSold { get; set; }
         public int TotalPurchased { get; set; }
         public DateTime LastUpdated { get; set; }
-
+        public Product Product { get; set; }
         public Stock() { }
-        public Stock(int productId, int initialQuantity, DateTime lastUpdated)
+        public Stock(int productId)
         {
             ProductId = productId;
-            AvailableQuantity = initialQuantity;
-            LastUpdated = lastUpdated;
+            AvailableQuantity = 0;
+            LastUpdated = DateTime.Now;
+            TotalPurchased = 0;
+            TotalSold = 0;
         }
     }
 }

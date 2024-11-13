@@ -15,10 +15,7 @@ namespace InventoryManagementApplication.Models
         }
         public PurchasedItem(Product product, int quantity) : base(product, quantity) { }
 
-        public override string ToString()
-        {
-            return $"\n Product Name : {Product.Name}  |  Quantity : {Quantity}  |  Price : {TotalPrice}\n";
-        }
+       
 
         public override double GetTotalPrice()
         {

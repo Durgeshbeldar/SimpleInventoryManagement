@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementApplication.Controllers
 {
-    internal class ProductController
+    internal class ProductController : StockController
     {
-        private readonly ProductRepository _productRepository;
+        private ProductRepository _productRepository;
 
         public ProductController()
         {
@@ -20,7 +20,8 @@ namespace InventoryManagementApplication.Controllers
         // Add new product
         public string AddProduct(Product product)
         {
-            _productRepository.Add(product);
+            AddEmptyStockToInventory(product.ProductId);
+            _productRepository.Add(product); 
             return "Product Added Successfully to The DataBase...!";
         }
 
