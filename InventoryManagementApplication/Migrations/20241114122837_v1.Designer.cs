@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApplication.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20241107132720_createTables")]
-    partial class createTables
+    [Migration("20241114122837_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,8 +89,9 @@ namespace InventoryManagementApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -137,7 +138,10 @@ namespace InventoryManagementApplication.Migrations
             modelBuilder.Entity("InventoryManagementApplication.Models.PurchasedInvoice", b =>
                 {
                     b.Property<int>("InvoiceId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceId"));
 
                     b.Property<DateTime>("InvoiceDate")
                         .HasColumnType("datetime2");
@@ -187,7 +191,10 @@ namespace InventoryManagementApplication.Migrations
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleInvoice", b =>
                 {
                     b.Property<int>("InvoiceId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InvoiceId"));
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -259,6 +266,8 @@ namespace InventoryManagementApplication.Migrations
 
                     b.HasKey("StockId");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("InventoryStocks");
                 });
 
@@ -274,8 +283,9 @@ namespace InventoryManagementApplication.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ContactNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -353,6 +363,17 @@ namespace InventoryManagementApplication.Migrations
                     b.HasOne("InventoryManagementApplication.Models.SaleInvoice", null)
                         .WithMany("LineItems")
                         .HasForeignKey("SaleInvoiceInvoiceId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("InventoryManagementApplication.Models.Stock", b =>
+                {
+                    b.HasOne("InventoryManagementApplication.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
                 });

@@ -17,7 +17,7 @@ namespace InventoryManagementApplication.Presentation
             while (true)
             {
                 DisplayMainMenu();
-                int choice = UserInputs.GetUserChoice(1, 5);
+                int choice = UserInputs.GetUserChoice(1, 6);
                 switch (choice)
                 {
                     case 1:
@@ -137,7 +137,7 @@ namespace InventoryManagementApplication.Presentation
             {
                 PurchasedItem purchasedItem;
                 List<Product> products = purchaseController.GetAllProducts();
-                if (purchasedProducts == null)
+                if (purchasedProducts.Count == 0)
                 {   
                     purchasedItem = GetProductToAdd(products);
                     purchasedProducts.Add(purchasedItem);
@@ -145,7 +145,7 @@ namespace InventoryManagementApplication.Presentation
                     PrintAddedProducts(purchasedProducts);
                     continue;
                 }
-                Console.WriteLine("Do you want to add Product to Invoice Choose 1 For Yes and 2 For No:");
+                Console.WriteLine("Do you want to add More Products to Invoice Choose 1 For Yes and 2 For No:");
                 int userChoice = UserInputs.GetOneOrTwo();
                 if (userChoice == 2)
                     return purchasedProducts;

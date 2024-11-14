@@ -1,4 +1,5 @@
 ﻿using InventoryManagementApplication.Data;
+using InventoryManagementApplication.Exceptions;
 using InventoryManagementApplication.Models;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace InventoryManagementApplication.Repositories
         {
             Stock stock = new Stock(productId);
             _context.InventoryStocks.Add(stock);
+            _context.SaveChanges();
         }
 
         public void AddQuantities(List<Tuple<int, int>> productIdsWithQuantities)
@@ -34,6 +36,7 @@ namespace InventoryManagementApplication.Repositories
                 if (stock == null)
                     continue;
                 stock.AvailableQuantity = stock.AvailableQuantity + quantity; 
+                stock.TotalPurchased  = stock.TotalPurchased + quantity;
             } 
             _context.SaveChanges(); 
         }
@@ -49,8 +52,17 @@ namespace InventoryManagementApplication.Repositories
                 if (stock == null)
                     continue;
                 stock.AvailableQuantity = stock.AvailableQuantity - quantity;
+                stock.TotalSold = stock.TotalSold + quantity;
             }
             _context.SaveChanges();
+        }
+
+        public bool IsProductAvailable(int productId,int quantity)
+        {
+           var stock =  _context.InventoryStocks.Where(stock => stock.ProductId == productId).FirstOrDefault();
+           if (stock != null)
+                return stock.AvailableQuantity >= quantity;
+            throw new ProductNotFoundException("Product Not Found In Stock, Please Try Another Product.");
         }
     }
 }

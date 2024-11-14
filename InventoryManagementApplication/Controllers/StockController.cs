@@ -32,5 +32,10 @@ namespace InventoryManagementApplication.Controllers
             _stockRepository.RemoveQuantities(productWithQuantities);
             return "Inventory Updated Successfully";
         }
+
+        public bool IsAvailable(int productId, int quantity)
+        {
+            return _stockRepository.IsProductAvailable(productId, quantity);
+        }
     }
 }

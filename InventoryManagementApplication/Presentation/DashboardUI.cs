@@ -39,21 +39,19 @@ namespace InventoryManagementApplication.Presentation
                         ManageBrandUI.ManageBrands();
                         break;
                     case 7:
+                        ManageSaleInvoiceUI.ManageSaleInvoices();
                         break;
                     case 8:
+                        ManagePurchasedInvoiceUI.ManagePurchasedInvoices();
                         break;
-
                     case 9:
                         Console.WriteLine("Log Out From Admin Inventory Dashboard");
                         return;
                     default:
                         Console.WriteLine("Invalid Input, Please Choose Correct Option!");
                         break;
-
                 }
-
             }
-
        }
        
        static void DisplayMainMenu()
@@ -65,8 +63,8 @@ namespace InventoryManagementApplication.Presentation
                 $"4.  Manage Products\n" +
                 $"5.  Manage Product Categories\n" +
                 $"6.  Manage Product Brands\n" +
-                $"7.  Create New Sale Invoice\n" +
-                $"8.  Create Purchased Invoice\n" +
+                $"7.  Manage Sales Invoices\n" +
+                $"8.  Manage Purchased Invoice\n" +
                 $"9.  View/Manage Stocks\n" +
                 $"10. View Profile\n" +
                 $"11. Logout\n");   

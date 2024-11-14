@@ -20,8 +20,8 @@ namespace InventoryManagementApplication.Controllers
         // Add new product
         public string AddProduct(Product product)
         {
+            _productRepository.Add(product);
             AddEmptyStockToInventory(product.ProductId);
-            _productRepository.Add(product); 
             return "Product Added Successfully to The DataBase...!";
         }
 

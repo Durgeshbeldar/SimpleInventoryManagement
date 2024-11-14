@@ -18,8 +18,14 @@ namespace InventoryManagementApplication.Repositories
 
         public void AddPurchasedInvoice(PurchasedInvoice invoice)
         {
-            _context.PurchasedInvoices.Add(invoice);
-            _context.SaveChanges();
+            try
+            {
+                _context.PurchasedInvoices.Add(invoice);
+                _context.SaveChanges();
+            }catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public PurchasedInvoice GetPurchasedInvoiceById(int id)
