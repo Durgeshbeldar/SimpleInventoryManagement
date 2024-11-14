@@ -12,8 +12,10 @@ namespace InventoryManagementApplication.Interfaces
     internal abstract class LineItem
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ItemId { get; set; }
+
+        [ForeignKey("ProductId")]
+        public int ProductId { get; set; }
         public Product Product { get; set; }
         public int Quantity { get; set; }
         public double TotalPrice { get; set; }
@@ -22,6 +24,7 @@ namespace InventoryManagementApplication.Interfaces
         public LineItem(Product product, int quantity)
         {
             Product = product;
+            ProductId = product.ProductId;
             Quantity = quantity;
             TotalPrice = GetTotalPrice();
         }

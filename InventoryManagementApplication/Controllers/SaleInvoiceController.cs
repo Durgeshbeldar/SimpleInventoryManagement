@@ -17,9 +17,19 @@ namespace InventoryManagementApplication.Controllers
         }
 
         // Add New Sales Invoice
-        public void AddSalesInvoice(SaleInvoice invoice)
+        public int AddSaleInvoice(SaleInvoice invoice)
         {
-            _repository.AddSalesInvoice(invoice);
+            return _repository.AddSaleInvoice(invoice);
+        }
+
+        public void UpdateInvoice(SaleInvoice invoice)
+        {
+            _repository.UpdateInvoice(invoice);
+        }
+
+        public void AddSaleItem(SaleItem item)
+        {
+            _repository.AddSaleItem(item);
         }
 
         // Get Sales Invoice By ID

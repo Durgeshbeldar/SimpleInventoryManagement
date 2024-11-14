@@ -26,11 +26,18 @@ namespace InventoryManagementApplication.Models
         {
             LineItems = new List<PurchasedItem>();
         }
-        public PurchasedInvoice(int wholesalerId, List<PurchasedItem> lineItems)
+        public PurchasedInvoice(int wholesalerId)
         {
             WholesalerId = wholesalerId;
-            LineItems = lineItems;
             InvoiceDate = DateTime.Now;
+            TotalAmount = 0;
+        }
+        public PurchasedInvoice(int invoiceId, int wholesalerId,List<PurchasedItem> Lineitems)
+        {
+            InvoiceId = invoiceId;
+            WholesalerId = wholesalerId;
+            LineItems = Lineitems;
+            InvoiceDate= DateTime.Now;
             TotalAmount = CalculateTotal();
         }
 
@@ -44,7 +51,7 @@ namespace InventoryManagementApplication.Models
         {
             StringBuilder invoiceBuilder = new StringBuilder();
 
-            invoiceBuilder.AppendLine("****************** PURCHASED INVOICE ******************");
+            invoiceBuilder.AppendLine("********************** PURCHASED INVOICE **********************");
             invoiceBuilder.AppendLine($"Invoice ID: {InvoiceId}".PadRight(50));
             invoiceBuilder.AppendLine($"Date: {InvoiceDate.ToString("dd-MM-yyyy")}".PadRight(50));
             invoiceBuilder.AppendLine($"Wholesaler: {Wholesaler.Name}".PadRight(50));
@@ -58,8 +65,8 @@ namespace InventoryManagementApplication.Models
             }
 
             invoiceBuilder.AppendLine("--------------------------------------------------------");
-            invoiceBuilder.AppendLine($"Total Amount: {TotalAmount.ToString("F2").PadLeft(50)}");
-            invoiceBuilder.AppendLine("*******************************************************");
+            invoiceBuilder.AppendLine($"Total Amount: {TotalAmount.ToString("F2").PadLeft(35)}");
+            invoiceBuilder.AppendLine("***************************************************************");
 
             return invoiceBuilder.ToString();
         }

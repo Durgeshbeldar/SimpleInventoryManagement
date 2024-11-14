@@ -12,17 +12,14 @@ namespace InventoryManagementApplication.Models
 {
     internal class SaleItem : LineItem
     {
+        [ForeignKey("SaleInvoice")]
+        public int InvoiceId { get; set; }
         public SaleItem() : base()
         {
 
         }
         public SaleItem(Product product, int quantity) : base(product, quantity) { }
      
-       public override string ToString()
-       {
-           return $"\n Product Name : {Product.Name}  |  Quantity : {Quantity}  |  Price : {TotalPrice}\n";
-       }
-
         public override double GetTotalPrice()
         {
             return Product.MRP * Quantity;

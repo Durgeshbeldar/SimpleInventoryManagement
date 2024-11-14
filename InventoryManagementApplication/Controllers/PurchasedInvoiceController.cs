@@ -15,16 +15,28 @@ namespace InventoryManagementApplication.Controllers
         }
 
         // Add New Purchased Invoice
-        public void AddPurchasedInvoice(PurchasedInvoice invoice)
+        public int  AddPurchasedInvoice(PurchasedInvoice invoice)
         {
-            _repository.AddPurchasedInvoice(invoice);
+           return _repository.AddPurchasedInvoice(invoice);
         }
+        public void UpdateInvoice(PurchasedInvoice invoice)
+        {
+            _repository.UpdateInvoice(invoice);
+        }
+
+        public void AddPurchasedItem(PurchasedItem item)
+        {
+            _repository.AddPurchasedItem(item);
+        }
+
 
         //Get Invoices By Id
         public PurchasedInvoice GetPurchasedInvoiceById(int invoiceId)
         {
             return _repository.GetPurchasedInvoiceById(invoiceId);
         }
+
+
 
         // Get Invoice By Date
         public List<PurchasedInvoice> GetInvoicesByDate(DateTime date)

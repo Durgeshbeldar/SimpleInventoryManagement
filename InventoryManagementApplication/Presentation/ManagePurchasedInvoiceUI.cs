@@ -110,8 +110,14 @@ namespace InventoryManagementApplication.Presentation
                 wholesalers.ForEach(wholesaler => Console.WriteLine($"{++count}. {wholesaler.Name}"));
                 int userChoice = UserInputs.GetUserChoice(1, wholesalers.Count);
                 int wholesalerId = wholesalers[userChoice - 1].WholesalerId;
-                List<PurchasedItem> purchasedItems = SelectProducts();
-                PurchasedInvoice purchasedInvoice = new PurchasedInvoice(wholesalerId, purchasedItems);
+
+                PurchasedInvoice emptyPurchasedInvoice = new PurchasedInvoice(wholesalerId);
+                int invoiceId = purchaseController.AddPurchasedInvoice(emptyPurchasedInvoice);
+
+                List<PurchasedItem> purchasedItems = SelectProducts(invoiceId);
+                AddPurchasedItems(purchasedItems);
+
+                PurchasedInvoice purchasedInvoice = new PurchasedInvoice(invoiceId, wholesalerId, purchasedItems);
                 List<Tuple<int, int>> productWithQuantities = new List<Tuple<int, int>>();
                 purchasedItems.ForEach(item =>
                 {
@@ -119,16 +125,24 @@ namespace InventoryManagementApplication.Presentation
                     int quantities = item.Quantity;
                     productWithQuantities.Add(Tuple.Create(productId, quantities));
                 });
-                purchaseController.AddPurchasedInvoice(purchasedInvoice);
+                purchaseController.UpdateInvoice(purchasedInvoice);
                 string result = purchaseController.AddStocks(productWithQuantities);
                 Console.WriteLine("\n" + result + "\nInvoice Is Saved To The Database & Stocks Are Updated Successfully");
             }catch(Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);     
             }
         }
 
-        static List<PurchasedItem> SelectProducts()
+        static void AddPurchasedItems(List<PurchasedItem> purchasedItems)
+        {
+            purchasedItems.ForEach(item =>
+            {
+                purchaseController.AddPurchasedItem(item);
+            });
+        }
+
+        static List<PurchasedItem> SelectProducts(int invoiceId)
         {
             // This loop continuously run till user dont wanted to add more products.
 
@@ -140,8 +154,10 @@ namespace InventoryManagementApplication.Presentation
                 if (purchasedProducts.Count == 0)
                 {   
                     purchasedItem = GetProductToAdd(products);
+                    purchasedItem.InvoiceId = invoiceId;
+
                     purchasedProducts.Add(purchasedItem);
-                    Console.WriteLine("Product Added Successfully:");
+                    Console.WriteLine("Product Added Successfully\n");
                     PrintAddedProducts(purchasedProducts);
                     continue;
                 }
@@ -151,8 +167,11 @@ namespace InventoryManagementApplication.Presentation
                     return purchasedProducts;
 
                 purchasedItem = GetProductToAdd(products);
+                purchasedItem.InvoiceId = invoiceId; // Setting The Foreign Key 
+
                 purchasedProducts.Add(purchasedItem);
-                Console.WriteLine("Product Added Successfully:");
+
+                Console.WriteLine("Product Added Successfully\n");
                 PrintAddedProducts(purchasedProducts);
             } while(true);
         }

@@ -17,17 +17,40 @@ namespace InventoryManagementApplication.Repositories
         }
 
         // Add a new Sales Invoice to the database
-        public void AddSalesInvoice(SaleInvoice invoice)
+        public int AddSaleInvoice(SaleInvoice newInvoice)
         {
-            _context.SaleInvoices.Add(invoice);
+            _context.SaleInvoices.Add(newInvoice);
             _context.SaveChanges();
+            var existingInvoice = _context.PurchasedInvoices.Where
+                (invoice => invoice.InvoiceDate == newInvoice.InvoiceDate).FirstOrDefault();
+            if (existingInvoice != null)
+                return existingInvoice.InvoiceId;
+            return 0;
         }
 
+        public void UpdateInvoice(SaleInvoice newInvoice)
+        {
+            var existingInvoice = _context.SaleInvoices.Find(newInvoice.InvoiceId);
+            if (existingInvoice != null)
+            {
+                existingInvoice.InvoiceDate = newInvoice.InvoiceDate;
+                existingInvoice.LineItems = newInvoice.LineItems;
+                existingInvoice.TotalAmount = newInvoice.TotalAmount;
+            }
+        }
+        public void AddSaleItem(SaleItem saleItem)
+        {
+            _context.SaleItems.Add(saleItem);
+            _context.SaveChanges();
+        }
         // Get a Sales Invoice by its ID
         public SaleInvoice GetSalesInvoiceById(int id)
         {
-            return _context.SaleInvoices.Include(invoice => invoice.Customer)
+            var invoice = _context.SaleInvoices.Include(invoice => invoice.Customer)
                                          .FirstOrDefault(invoice => invoice.InvoiceId == id);
+            if (invoice != null) 
+                return invoice;
+            return null;
         }
 
         // Get all Sales Invoices by a specific date

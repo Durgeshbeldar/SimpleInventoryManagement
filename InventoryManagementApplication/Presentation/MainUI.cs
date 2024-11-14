@@ -13,6 +13,7 @@ namespace InventoryManagementApplication.Presentation
         public static void InventoryLoginUI()
         {
             DisplayWelcome();
+
             Console.WriteLine("Enter Your User ID : ");
             string userId = Console.ReadLine().ToLower();
             Console.WriteLine("\nEnter Your Password :");

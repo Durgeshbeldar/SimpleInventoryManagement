@@ -113,8 +113,13 @@ namespace InventoryManagementApplication.Presentation
                 customers.ForEach(customer => Console.WriteLine($"{++count}. {customer.Name}"));
                 int userChoice = UserInputs.GetUserChoice(1, customers.Count);
                 int customerId = customers[userChoice - 1].CustomerId;
-                List<SaleItem> saleItems = SelectProducts();
-                SaleInvoice saleInvoice = new SaleInvoice(customerId, saleItems);
+
+                SaleInvoice emptySaleInvoice = new SaleInvoice(customerId);
+                int invoiceId = saleController.AddSaleInvoice(emptySaleInvoice);
+
+                List<SaleItem> saleItems = SelectProducts(invoiceId);
+                AddSaleItems(saleItems);
+                SaleInvoice saleInvoice = new SaleInvoice(invoiceId, customerId, saleItems);
                 List<Tuple<int, int>> productWithQuantities = new List<Tuple<int, int>>();
                 saleItems.ForEach(item =>
                 {
@@ -122,7 +127,7 @@ namespace InventoryManagementApplication.Presentation
                     int quantities = item.Quantity;
                     productWithQuantities.Add(Tuple.Create(productId, quantities));
                 });
-                saleController.AddSalesInvoice(saleInvoice);
+                saleController.UpdateInvoice(saleInvoice);
                 string result = saleController.RemoveStocks(productWithQuantities);
                 Console.WriteLine("\n" + result + "\nInvoice Is Saved To The Database & Stocks Are Updated Successfully");
             }
@@ -132,7 +137,15 @@ namespace InventoryManagementApplication.Presentation
             }
         }
 
-        static List<SaleItem> SelectProducts()
+        static void AddSaleItems(List<SaleItem> saleItems)
+        {
+            saleItems.ForEach(item =>
+            {
+                saleController.AddSaleItem(item);
+            });
+        }
+
+        static List<SaleItem> SelectProducts(int invoiceId)
         {
             List<SaleItem> saleItems = new List<SaleItem>();
             do
@@ -142,6 +155,8 @@ namespace InventoryManagementApplication.Presentation
                 if (saleItems.Count == 0)
                 {
                     saleItem = GetProductToAdd(products);
+                    saleItem.InvoiceId = invoiceId;
+
                     saleItems.Add(saleItem);
                     Console.WriteLine("Product Added Successfully:");
                     PrintAddedProducts(saleItems);

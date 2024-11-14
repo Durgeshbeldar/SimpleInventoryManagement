@@ -1,4 +1,5 @@
-﻿using InventoryManagementApplication.Models;
+﻿using InventoryManagementApplication.Interfaces;
+using InventoryManagementApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
@@ -22,6 +23,10 @@ namespace InventoryManagementApplication.Data
         public DbSet<PurchasedInvoice> PurchasedInvoices { get; set; }
         public DbSet<SaleInvoice> SaleInvoices { get; set; }
 
+        public DbSet<PurchasedItem> PurchasedItems { get; set; }
+        public DbSet<SaleItem> SaleItems { get; set; }
+
+       
         public DbSet<Stock> InventoryStocks { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

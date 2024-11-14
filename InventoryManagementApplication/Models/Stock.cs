@@ -11,7 +11,6 @@ namespace InventoryManagementApplication.Models
     internal class Stock
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int StockId { get; set; }
         [ForeignKey("Product")]
         public int ProductId { get; set; }
