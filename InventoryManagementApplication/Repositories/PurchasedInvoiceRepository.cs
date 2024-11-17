@@ -34,8 +34,9 @@ namespace InventoryManagementApplication.Repositories
             if (existingInvoice != null)
             {
                 existingInvoice.InvoiceDate = newInvoice.InvoiceDate;
-                existingInvoice.LineItems = newInvoice.LineItems;
+                existingInvoice.PurchasedItems = newInvoice.PurchasedItems;
                 existingInvoice.TotalAmount = newInvoice.TotalAmount;
+                _context.SaveChanges();
             }
         }
 
@@ -53,7 +54,7 @@ namespace InventoryManagementApplication.Repositories
 
         public PurchasedInvoice GetPurchasedInvoiceById(int id)
         {
-            return _context.PurchasedInvoices.Include(invoice => invoice.Wholesaler).FirstOrDefault(invoice => invoice.InvoiceId == id);
+            return _context.PurchasedInvoices.Include(invoice => invoice.Wholesaler).Include(invoice => invoice.PurchasedItems).ThenInclude(item => item.Product).FirstOrDefault(invoice => invoice.InvoiceId == id);
         }
 
         public List<PurchasedInvoice> GetPurchasedInvoicesByDate(DateTime date)

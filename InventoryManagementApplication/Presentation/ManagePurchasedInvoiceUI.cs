@@ -4,6 +4,7 @@ using InventoryManagementApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,6 +43,7 @@ namespace InventoryManagementApplication.Presentation
             }
         }
 
+     
         static void DeleteInvoiceById()
         {
             int userInput = UserInputs.GetValidIntegerValue("Purchased Invoice Id");
@@ -89,6 +91,37 @@ namespace InventoryManagementApplication.Presentation
             Console.WriteLine("---------------------------------------------------------------------------------------------------");
         }
 
+        static string PrintInvoice(PurchasedInvoice invoice)
+        {
+            List<PurchasedItem> LineItems = invoice.PurchasedItems;
+            int invoiceId = invoice.InvoiceId;
+            DateTime invoiceDate = invoice.InvoiceDate; 
+            Wholesaler wholesaler = invoice.Wholesaler;
+            double totalAmount = invoice.TotalAmount;
+
+            StringBuilder invoiceBuilder = new StringBuilder();
+
+            invoiceBuilder.AppendLine("********************** PURCHASED INVOICE **********************");
+            invoiceBuilder.AppendLine($"Invoice ID: {invoiceId}".PadRight(50));
+            invoiceBuilder.AppendLine($"Date: {invoiceDate.ToString("dd-MM-yyyy")}".PadRight(50));
+            invoiceBuilder.AppendLine($"Wholesaler: {wholesaler.Name}".PadRight(50));
+            invoiceBuilder.AppendLine("--------------------------------------------------------");
+            invoiceBuilder.AppendLine("Product Name".PadRight(25) + "Quantity".PadRight(15) + "Price".PadLeft(10));
+            invoiceBuilder.AppendLine("--------------------------------------------------------");
+
+            foreach (var item in LineItems)
+            {
+                var product = item.Product; 
+                invoiceBuilder.AppendLine($"{product.Name.PadRight(25)}{item.Quantity.ToString().PadRight(15)}{item.TotalPrice.ToString("F2").PadLeft(11)}");
+            }
+
+            invoiceBuilder.AppendLine("--------------------------------------------------------");
+            invoiceBuilder.AppendLine($"Total Amount: {totalAmount.ToString("F2").PadLeft(37)}");
+            invoiceBuilder.AppendLine("***************************************************************");
+
+            return invoiceBuilder.ToString();
+        }
+
         static void GetInvoiceById()
         {
             int userInput = UserInputs.GetValidIntegerValue("Purchased Invoice Id");
@@ -98,7 +131,9 @@ namespace InventoryManagementApplication.Presentation
                 Console.WriteLine("Purchased Invoice Details Not Found, Please Enter Valid Invoice Id");
                 return;
             }
-            Console.WriteLine($"Purchased Invoice Details Found:\n{invoice}\n");
+            Console.WriteLine($"Purchased Invoice Details Found:\n{PrintInvoice(invoice)}\n");
+           
+
         }
         static void AddPurchasedInvoice()
         {
@@ -121,7 +156,7 @@ namespace InventoryManagementApplication.Presentation
                 List<Tuple<int, int>> productWithQuantities = new List<Tuple<int, int>>();
                 purchasedItems.ForEach(item =>
                 {
-                    int productId = item.Product.ProductId;
+                    int productId = item.ProductId;
                     int quantities = item.Quantity;
                     productWithQuantities.Add(Tuple.Create(productId, quantities));
                 });
@@ -144,13 +179,15 @@ namespace InventoryManagementApplication.Presentation
 
         static List<PurchasedItem> SelectProducts(int invoiceId)
         {
+            List<Product> products = purchaseController.GetAllProducts();
+            List<PurchasedItem> purchasedProducts = new List<PurchasedItem>();
+
             // This loop continuously run till user dont wanted to add more products.
 
-            List<PurchasedItem> purchasedProducts = new List<PurchasedItem>(); 
             do
             {
                 PurchasedItem purchasedItem;
-                List<Product> products = purchaseController.GetAllProducts();
+          
                 if (purchasedProducts.Count == 0)
                 {   
                     purchasedItem = GetProductToAdd(products);
@@ -183,17 +220,22 @@ namespace InventoryManagementApplication.Presentation
                       "Note : If Product Not Found in Following List Then Please Add New Product.");
             products.ForEach(product => Console.WriteLine($"{++count}. {product.Name}"));
             int Choice = UserInputs.GetUserChoice(1, products.Count);
-            Product product = purchaseController.GetProductById(products[Choice - 1].ProductId);
+            Product product = products[Choice - 1];
             Console.WriteLine("Enter The Quantity : ");
             int quantity = int.Parse(Console.ReadLine());
-            return new PurchasedItem(product, quantity);
+            double totalPrice = product.PurchasedPrice * quantity;
+            return new PurchasedItem(product.ProductId, quantity, totalPrice);
         }
         static void PrintAddedProducts(List<PurchasedItem> purchasedProducts)
         {
             int count = 0;
             Console.WriteLine("Added Products");
-            purchasedProducts.ForEach(product => Console.WriteLine($"\n{++count}. Name : {product.Product.Name}\n" +
-                $"Quantity : {product.Quantity}"));
+            purchasedProducts.ForEach(item =>
+            {
+                Product product =  purchaseController.GetProductById(item.ProductId);
+                Console.WriteLine($"\n{++count}. Name : {product.Name}\n" +
+                $"Quantity : {item.Quantity}");
+            });
         }
         
         

@@ -16,7 +16,7 @@ namespace InventoryManagementApplication.Models
         [ForeignKey("Wholesaler")]
         public int WholesalerId { get; set; }
 
-        public List<PurchasedItem> LineItems {  get; set; }
+        public List<PurchasedItem> PurchasedItems {  get; set; }
         public DateTime InvoiceDate { get; set; }  
         
         public double TotalAmount { get; set; }
@@ -24,7 +24,7 @@ namespace InventoryManagementApplication.Models
         public Wholesaler Wholesaler { get; set; }
         public PurchasedInvoice()
         {
-            LineItems = new List<PurchasedItem>();
+            PurchasedItems = new List<PurchasedItem>();
         }
         public PurchasedInvoice(int wholesalerId)
         {
@@ -36,7 +36,7 @@ namespace InventoryManagementApplication.Models
         {
             InvoiceId = invoiceId;
             WholesalerId = wholesalerId;
-            LineItems = Lineitems;
+            PurchasedItems = Lineitems;
             InvoiceDate= DateTime.Now;
             TotalAmount = CalculateTotal();
         }
@@ -44,32 +44,7 @@ namespace InventoryManagementApplication.Models
       
         private double CalculateTotal()
         {
-            return TotalAmount = LineItems.Sum(item => item.TotalPrice);
+            return TotalAmount = PurchasedItems.Sum(item => item.TotalPrice);
         }
-
-        public override string ToString()
-        {
-            StringBuilder invoiceBuilder = new StringBuilder();
-
-            invoiceBuilder.AppendLine("********************** PURCHASED INVOICE **********************");
-            invoiceBuilder.AppendLine($"Invoice ID: {InvoiceId}".PadRight(50));
-            invoiceBuilder.AppendLine($"Date: {InvoiceDate.ToString("dd-MM-yyyy")}".PadRight(50));
-            invoiceBuilder.AppendLine($"Wholesaler: {Wholesaler.Name}".PadRight(50));
-            invoiceBuilder.AppendLine("--------------------------------------------------------");
-            invoiceBuilder.AppendLine("Product Name".PadRight(25) + "Quantity".PadRight(15) + "Price".PadLeft(10));
-            invoiceBuilder.AppendLine("--------------------------------------------------------");
-
-            foreach (var item in LineItems)
-            {
-                invoiceBuilder.AppendLine($"{item.Product.Name.PadRight(25)}{item.Quantity.ToString().PadRight(15)}{item.TotalPrice.ToString("F2").PadLeft(10)}");
-            }
-
-            invoiceBuilder.AppendLine("--------------------------------------------------------");
-            invoiceBuilder.AppendLine($"Total Amount: {TotalAmount.ToString("F2").PadLeft(35)}");
-            invoiceBuilder.AppendLine("***************************************************************");
-
-            return invoiceBuilder.ToString();
-        }
-
     }
 }

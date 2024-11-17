@@ -4,6 +4,7 @@ using InventoryManagementApplication.Models;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace InventoryManagementApplication.Presentation
 {
@@ -91,6 +92,38 @@ namespace InventoryManagementApplication.Presentation
             Console.WriteLine("---------------------------------------------------------------------------------------------------");
         }
 
+        static string PrintInvoice(SaleInvoice invoice)
+        {
+            List<SaleItem> LineItems = invoice.SaleItems;
+            int invoiceId = invoice.InvoiceId;
+            DateTime invoiceDate = invoice.InvoiceDate;
+            Customer customer = invoice.Customer;
+            double totalAmount = invoice.TotalAmount;
+
+            StringBuilder invoiceBuilder = new StringBuilder();
+
+            invoiceBuilder.AppendLine("********************** PURCHASED INVOICE **********************");
+            invoiceBuilder.AppendLine($"Invoice ID: {invoiceId}".PadRight(50));
+            invoiceBuilder.AppendLine($"Date: {invoiceDate.ToString("dd-MM-yyyy")}".PadRight(50));
+            invoiceBuilder.AppendLine($"Customer: {customer.Name}".PadRight(50));
+            invoiceBuilder.AppendLine("--------------------------------------------------------");
+            invoiceBuilder.AppendLine("Product Name".PadRight(25) + "Quantity".PadRight(15) + "Price".PadLeft(10));
+            invoiceBuilder.AppendLine("--------------------------------------------------------");
+
+            foreach (var item in LineItems)
+            {
+                var product = item.Product;
+                invoiceBuilder.AppendLine($"{product.Name.PadRight(25)}{item.Quantity.ToString().PadRight(15)}{item.TotalPrice.ToString("F2").PadLeft(11)}");
+            }
+
+            invoiceBuilder.AppendLine("--------------------------------------------------------");
+            invoiceBuilder.AppendLine($"Total Amount: {totalAmount.ToString("F2").PadLeft(37)}");
+            invoiceBuilder.AppendLine("***************************************************************");
+
+            return invoiceBuilder.ToString();
+        }
+
+
         static void GetInvoiceById()
         {
             int userInput = UserInputs.GetValidIntegerValue("Sales Invoice Id");
@@ -100,7 +133,7 @@ namespace InventoryManagementApplication.Presentation
                 Console.WriteLine("Sales Invoice Details Not Found, Please Enter Valid Invoice Id");
                 return;
             }
-            Console.WriteLine($"Sales Invoice Details Found:\n{invoice}\n");
+            Console.WriteLine($"Sales Invoice Details Found:\n{PrintInvoice(invoice)}\n");
         }
 
         static void AddSalesInvoice()
@@ -123,7 +156,7 @@ namespace InventoryManagementApplication.Presentation
                 List<Tuple<int, int>> productWithQuantities = new List<Tuple<int, int>>();
                 saleItems.ForEach(item =>
                 {
-                    int productId = item.Product.ProductId;
+                    int productId = item.ProductId;
                     int quantities = item.Quantity;
                     productWithQuantities.Add(Tuple.Create(productId, quantities));
                 });
@@ -147,11 +180,11 @@ namespace InventoryManagementApplication.Presentation
 
         static List<SaleItem> SelectProducts(int invoiceId)
         {
+            List<Product> products = saleController.GetAllProducts();
             List<SaleItem> saleItems = new List<SaleItem>();
             do
             {
                 SaleItem saleItem;
-                List<Product> products = saleController.GetAllProducts();
                 if (saleItems.Count == 0)
                 {
                     saleItem = GetProductToAdd(products);
@@ -187,8 +220,9 @@ namespace InventoryManagementApplication.Presentation
                 int quantity = int.Parse(Console.ReadLine());
                 if (saleController.IsAvailable(products[choice - 1].ProductId, quantity))
                 {
-                    Product product = saleController.GetProductById(products[choice - 1].ProductId);
-                    return new SaleItem(product, quantity);
+                    Product product = products[choice - 1];
+                    double totalPrice = product.MRP * quantity;
+                    return new SaleItem(product.ProductId, quantity, totalPrice);
                 }
                 Console.WriteLine("Product is Not Available In Stock, Please Try Another Product to Add");
                 return GetProductToAdd(products);
@@ -203,8 +237,12 @@ namespace InventoryManagementApplication.Presentation
         {
             int count = 0;
             Console.WriteLine("Added Products:");
-            saleItems.ForEach(item => Console.WriteLine($"\n{++count}. Name: {item.Product.Name}\n" +
-                $"Quantity: {item.Quantity}"));
+            saleItems.ForEach(item =>
+            {
+                var product = saleController.GetProductById(item.ProductId);
+                Console.WriteLine($"\n{++count}. Name: {product.Name}\n" +
+                $"Quantity: {item.Quantity}");
+            });
         }
 
         static void DisplayMainMenu()

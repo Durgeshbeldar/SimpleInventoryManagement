@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApplication.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20241114202812_v2")]
-    partial class v2
+    [Migration("20241116072050_add-migration v1")]
+    partial class addmigrationv1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -173,9 +173,6 @@ namespace InventoryManagementApplication.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PurchasedInvoiceInvoiceId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -184,9 +181,9 @@ namespace InventoryManagementApplication.Migrations
 
                     b.HasKey("ItemId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("InvoiceId");
 
-                    b.HasIndex("PurchasedInvoiceInvoiceId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("PurchasedItems");
                 });
@@ -232,17 +229,14 @@ namespace InventoryManagementApplication.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SaleInvoiceInvoiceId")
-                        .HasColumnType("int");
-
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
 
                     b.HasKey("ItemId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("InvoiceId");
 
-                    b.HasIndex("SaleInvoiceInvoiceId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("SaleItems");
                 });
@@ -334,15 +328,19 @@ namespace InventoryManagementApplication.Migrations
 
             modelBuilder.Entity("InventoryManagementApplication.Models.PurchasedItem", b =>
                 {
+                    b.HasOne("InventoryManagementApplication.Models.PurchasedInvoice", "Invoice")
+                        .WithMany("LineItems")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InventoryManagementApplication.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApplication.Models.PurchasedInvoice", null)
-                        .WithMany("LineItems")
-                        .HasForeignKey("PurchasedInvoiceInvoiceId");
+                    b.Navigation("Invoice");
 
                     b.Navigation("Product");
                 });
@@ -360,15 +358,19 @@ namespace InventoryManagementApplication.Migrations
 
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleItem", b =>
                 {
+                    b.HasOne("InventoryManagementApplication.Models.SaleInvoice", "Invoice")
+                        .WithMany("LineItems")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InventoryManagementApplication.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApplication.Models.SaleInvoice", null)
-                        .WithMany("LineItems")
-                        .HasForeignKey("SaleInvoiceInvoiceId");
+                    b.Navigation("Invoice");
 
                     b.Navigation("Product");
                 });

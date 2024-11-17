@@ -34,7 +34,7 @@ namespace InventoryManagementApplication.Repositories
             if (existingInvoice != null)
             {
                 existingInvoice.InvoiceDate = newInvoice.InvoiceDate;
-                existingInvoice.LineItems = newInvoice.LineItems;
+                existingInvoice.SaleItems = newInvoice.SaleItems;
                 existingInvoice.TotalAmount = newInvoice.TotalAmount;
             }
         }
@@ -46,8 +46,8 @@ namespace InventoryManagementApplication.Repositories
         // Get a Sales Invoice by its ID
         public SaleInvoice GetSalesInvoiceById(int id)
         {
-            var invoice = _context.SaleInvoices.Include(invoice => invoice.Customer)
-                                         .FirstOrDefault(invoice => invoice.InvoiceId == id);
+            var invoice = _context.SaleInvoices.Include(invoice => invoice.Customer).
+                Include(invoice=> invoice.SaleItems).ThenInclude(item => item.Product).FirstOrDefault(invoice => invoice.InvoiceId == id);
             if (invoice != null) 
                 return invoice;
             return null;

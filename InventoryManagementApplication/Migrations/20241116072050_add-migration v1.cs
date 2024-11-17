@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InventoryManagementApplication.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class addmigrationv1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -175,57 +175,59 @@ namespace InventoryManagementApplication.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SaleItem",
+                name: "SaleItems",
                 columns: table => new
                 {
                     ItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SaleInvoiceInvoiceId = table.Column<int>(type: "int", nullable: true),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SaleItem", x => x.ItemId);
+                    table.PrimaryKey("PK_SaleItems", x => x.ItemId);
                     table.ForeignKey(
-                        name: "FK_SaleItem_Products_ProductId",
+                        name: "FK_SaleItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SaleItem_SaleInvoices_SaleInvoiceInvoiceId",
-                        column: x => x.SaleInvoiceInvoiceId,
+                        name: "FK_SaleItems_SaleInvoices_InvoiceId",
+                        column: x => x.InvoiceId,
                         principalTable: "SaleInvoices",
-                        principalColumn: "InvoiceId");
+                        principalColumn: "InvoiceId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "PurchasedItem",
+                name: "PurchasedItems",
                 columns: table => new
                 {
                     ItemId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PurchasedInvoiceInvoiceId = table.Column<int>(type: "int", nullable: true),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     TotalPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PurchasedItem", x => x.ItemId);
+                    table.PrimaryKey("PK_PurchasedItems", x => x.ItemId);
                     table.ForeignKey(
-                        name: "FK_PurchasedItem_Products_ProductId",
+                        name: "FK_PurchasedItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PurchasedItem_PurchasedInvoices_PurchasedInvoiceInvoiceId",
-                        column: x => x.PurchasedInvoiceInvoiceId,
+                        name: "FK_PurchasedItems_PurchasedInvoices_InvoiceId",
+                        column: x => x.InvoiceId,
                         principalTable: "PurchasedInvoices",
-                        principalColumn: "InvoiceId");
+                        principalColumn: "InvoiceId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -249,14 +251,14 @@ namespace InventoryManagementApplication.Migrations
                 column: "WholesalerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PurchasedItem_ProductId",
-                table: "PurchasedItem",
-                column: "ProductId");
+                name: "IX_PurchasedItems_InvoiceId",
+                table: "PurchasedItems",
+                column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PurchasedItem_PurchasedInvoiceInvoiceId",
-                table: "PurchasedItem",
-                column: "PurchasedInvoiceInvoiceId");
+                name: "IX_PurchasedItems_ProductId",
+                table: "PurchasedItems",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SaleInvoices_CustomerId",
@@ -264,14 +266,14 @@ namespace InventoryManagementApplication.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SaleItem_ProductId",
-                table: "SaleItem",
-                column: "ProductId");
+                name: "IX_SaleItems_InvoiceId",
+                table: "SaleItems",
+                column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SaleItem_SaleInvoiceInvoiceId",
-                table: "SaleItem",
-                column: "SaleInvoiceInvoiceId");
+                name: "IX_SaleItems_ProductId",
+                table: "SaleItems",
+                column: "ProductId");
         }
 
         /// <inheritdoc />
@@ -284,10 +286,10 @@ namespace InventoryManagementApplication.Migrations
                 name: "InventoryStocks");
 
             migrationBuilder.DropTable(
-                name: "PurchasedItem");
+                name: "PurchasedItems");
 
             migrationBuilder.DropTable(
-                name: "SaleItem");
+                name: "SaleItems");
 
             migrationBuilder.DropTable(
                 name: "PurchasedInvoices");

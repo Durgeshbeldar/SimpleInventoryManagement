@@ -13,19 +13,19 @@ namespace InventoryManagementApplication.Presentation
         public static void InventoryLoginUI()
         {
             DisplayWelcome();
-
-            Console.WriteLine("Enter Your User ID : ");
-            string userId = Console.ReadLine().ToLower();
-            Console.WriteLine("\nEnter Your Password :");
-            string password = Console.ReadLine().ToLower();
-            if (adminController.IsValidUser(userId, password))
-            {
-                Console.WriteLine("Login Successfull...!\n");
-                DashboardUI.InventoryDashBoard();
-                return;
-            }
-            else
-                Console.WriteLine("\nIncorrect Credentials Please Try Again...!\n");
+            DashboardUI.InventoryDashBoard();
+            //Console.WriteLine("Enter Your User ID : ");
+            //string userId = Console.ReadLine().ToLower();
+            //Console.WriteLine("\nEnter Your Password :");
+            //string password = Console.ReadLine().ToLower();
+            //if (adminController.IsValidUser(userId, password))
+            //{
+            //    Console.WriteLine("Login Successfull...!\n");
+            //    DashboardUI.InventoryDashBoard();
+            //    return;
+            //}
+            //else
+            //    Console.WriteLine("\nIncorrect Credentials Please Try Again...!\n");
 
         }
 

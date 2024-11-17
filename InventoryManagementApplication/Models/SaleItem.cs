@@ -14,16 +14,11 @@ namespace InventoryManagementApplication.Models
     {
         [ForeignKey("SaleInvoice")]
         public int InvoiceId { get; set; }
+        public SaleInvoice? SaleInvoice { get; set; }
         public SaleItem() : base()
         {
 
         }
-        public SaleItem(Product product, int quantity) : base(product, quantity) { }
-     
-        public override double GetTotalPrice()
-        {
-            return Product.MRP * Quantity;
-        }
-
+        public SaleItem(int product, int quantity, double totalPrice) : base(product, quantity, totalPrice) { }
     }
 }

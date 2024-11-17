@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryManagementApplication.Migrations
 {
     [DbContext(typeof(InventoryContext))]
-    [Migration("20241114122837_v1")]
-    partial class v1
+    [Migration("20241116074618_v2")]
+    partial class v2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -167,6 +167,9 @@ namespace InventoryManagementApplication.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -185,7 +188,7 @@ namespace InventoryManagementApplication.Migrations
 
                     b.HasIndex("PurchasedInvoiceInvoiceId");
 
-                    b.ToTable("PurchasedItem");
+                    b.ToTable("PurchasedItems");
                 });
 
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleInvoice", b =>
@@ -220,13 +223,13 @@ namespace InventoryManagementApplication.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ItemId"));
 
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SaleInvoiceInvoiceId")
                         .HasColumnType("int");
 
                     b.Property<double>("TotalPrice")
@@ -234,11 +237,11 @@ namespace InventoryManagementApplication.Migrations
 
                     b.HasKey("ItemId");
 
+                    b.HasIndex("InvoiceId");
+
                     b.HasIndex("ProductId");
 
-                    b.HasIndex("SaleInvoiceInvoiceId");
-
-                    b.ToTable("SaleItem");
+                    b.ToTable("SaleItems");
                 });
 
             modelBuilder.Entity("InventoryManagementApplication.Models.Stock", b =>
@@ -334,11 +337,13 @@ namespace InventoryManagementApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApplication.Models.PurchasedInvoice", null)
+                    b.HasOne("InventoryManagementApplication.Models.PurchasedInvoice", "PurchasedInvoice")
                         .WithMany("LineItems")
                         .HasForeignKey("PurchasedInvoiceInvoiceId");
 
                     b.Navigation("Product");
+
+                    b.Navigation("PurchasedInvoice");
                 });
 
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleInvoice", b =>
@@ -354,17 +359,21 @@ namespace InventoryManagementApplication.Migrations
 
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleItem", b =>
                 {
+                    b.HasOne("InventoryManagementApplication.Models.SaleInvoice", "SaleInvoice")
+                        .WithMany("LineItems")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InventoryManagementApplication.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApplication.Models.SaleInvoice", null)
-                        .WithMany("LineItems")
-                        .HasForeignKey("SaleInvoiceInvoiceId");
-
                     b.Navigation("Product");
+
+                    b.Navigation("SaleInvoice");
                 });
 
             modelBuilder.Entity("InventoryManagementApplication.Models.Stock", b =>

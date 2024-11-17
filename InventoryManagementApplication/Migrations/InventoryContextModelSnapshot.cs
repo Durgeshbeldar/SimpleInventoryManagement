@@ -229,17 +229,14 @@ namespace InventoryManagementApplication.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SaleInvoiceInvoiceId")
-                        .HasColumnType("int");
-
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");
 
                     b.HasKey("ItemId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("InvoiceId");
 
-                    b.HasIndex("SaleInvoiceInvoiceId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("SaleItems");
                 });
@@ -337,11 +334,13 @@ namespace InventoryManagementApplication.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApplication.Models.PurchasedInvoice", null)
+                    b.HasOne("InventoryManagementApplication.Models.PurchasedInvoice", "PurchasedInvoice")
                         .WithMany("LineItems")
                         .HasForeignKey("PurchasedInvoiceInvoiceId");
 
                     b.Navigation("Product");
+
+                    b.Navigation("PurchasedInvoice");
                 });
 
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleInvoice", b =>
@@ -357,17 +356,21 @@ namespace InventoryManagementApplication.Migrations
 
             modelBuilder.Entity("InventoryManagementApplication.Models.SaleItem", b =>
                 {
+                    b.HasOne("InventoryManagementApplication.Models.SaleInvoice", "SaleInvoice")
+                        .WithMany("LineItems")
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("InventoryManagementApplication.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("InventoryManagementApplication.Models.SaleInvoice", null)
-                        .WithMany("LineItems")
-                        .HasForeignKey("SaleInvoiceInvoiceId");
-
                     b.Navigation("Product");
+
+                    b.Navigation("SaleInvoice");
                 });
 
             modelBuilder.Entity("InventoryManagementApplication.Models.Stock", b =>
