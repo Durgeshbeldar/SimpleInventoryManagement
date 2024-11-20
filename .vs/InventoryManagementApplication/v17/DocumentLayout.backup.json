@@ -3,30 +3,30 @@
   "WorkspaceRootPath": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.SaleItems.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.SaleInvoices.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\repositories\\saleinvoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\repositories\\saleinvoicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\presentation\\managesaleinvoiceui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\presentation\\managesaleinvoiceui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\models\\saleinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\models\\saleinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\controllers\\saleinvoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\controllers\\saleinvoicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\models\\saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\models\\saleitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\interfaces\\lineitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\interfaces\\lineitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\presentation\\managepurchasedinvoiceui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\presentation\\managepurchasedinvoiceui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.PurchasedInvoices.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.PurchasedItems.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+      "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\presentation\\managesaleinvoiceui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\presentation\\managesaleinvoiceui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\models\\purchasedinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -35,6 +35,15 @@
     {
       "AbsoluteMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|s:\\office work\\monocept training\\assignments\\inventorymanagementapplication\\inventorymanagementapplication\\models\\purchaseditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2179E760-5AA7-4DE3-BAA7-5847A477792D}|InventoryManagementApplication\\InventoryManagementApplication.csproj|solutionrelative:inventorymanagementapplication\\models\\purchaseditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.Products.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.InventoryStocks.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.PurchasedInvoices.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,104 +53,91 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SaleInvoiceRepository.cs",
-              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
-              "RelativeDocumentMoniker": "InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
-              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
-              "RelativeToolTip": "InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAgwCUAAABFAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "SaleInvoiceController.cs",
+              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Controllers\\SaleInvoiceController.cs",
+              "RelativeDocumentMoniker": "InventoryManagementApplication\\Controllers\\SaleInvoiceController.cs",
+              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Controllers\\SaleInvoiceController.cs",
+              "RelativeToolTip": "InventoryManagementApplication\\Controllers\\SaleInvoiceController.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAiwD4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T21:58:03.3Z",
+              "WhenOpened": "2024-11-20T08:15:25.269Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "dbo.PurchasedInvoices [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.PurchasedInvoices.sql",
-              "ToolTip": "dbo.PurchasedInvoices [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-11-17T20:33:00.686Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "SaleItem.cs",
               "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\SaleItem.cs",
               "RelativeDocumentMoniker": "InventoryManagementApplication\\Models\\SaleItem.cs",
               "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\SaleItem.cs",
               "RelativeToolTip": "InventoryManagementApplication\\Models\\SaleItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABrAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T19:43:37.252Z",
+              "WhenOpened": "2024-11-20T08:19:42.748Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LineItem.cs",
-              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Interfaces\\LineItem.cs",
-              "RelativeDocumentMoniker": "InventoryManagementApplication\\Interfaces\\LineItem.cs",
-              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Interfaces\\LineItem.cs",
-              "RelativeToolTip": "InventoryManagementApplication\\Interfaces\\LineItem.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAAABMAAAAWAAAAAAAAAA==",
+              "Title": "SaleInvoice.cs",
+              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\SaleInvoice.cs",
+              "RelativeDocumentMoniker": "InventoryManagementApplication\\Models\\SaleInvoice.cs",
+              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\SaleInvoice.cs",
+              "RelativeToolTip": "InventoryManagementApplication\\Models\\SaleInvoice.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAA2wB4AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T19:44:12.625Z",
+              "WhenOpened": "2024-11-20T08:09:23.703Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "dbo.PurchasedItems [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.PurchasedItems.sql",
-              "ToolTip": "dbo.PurchasedItems [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-11-17T19:57:38.715Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ManagePurchasedInvoiceUI.cs",
-              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Presentation\\ManagePurchasedInvoiceUI.cs",
-              "RelativeDocumentMoniker": "InventoryManagementApplication\\Presentation\\ManagePurchasedInvoiceUI.cs",
-              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Presentation\\ManagePurchasedInvoiceUI.cs",
-              "RelativeToolTip": "InventoryManagementApplication\\Presentation\\ManagePurchasedInvoiceUI.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAUwGEAAAA4AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "SaleInvoiceRepository.cs",
+              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
+              "RelativeDocumentMoniker": "InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
+              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
+              "RelativeToolTip": "InventoryManagementApplication\\Repositories\\SaleInvoiceRepository.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAmwDkAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T19:44:27.295Z",
+              "WhenOpened": "2024-11-20T06:56:42.093Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "dbo.SaleInvoices [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.SaleInvoices.sql",
+              "ToolTip": "dbo.SaleInvoices [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-20T06:56:28.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dbo.SaleItems [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.SaleItems.sql",
+              "ToolTip": "dbo.SaleItems [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-20T07:47:59.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ManageSaleInvoiceUI.cs",
               "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Presentation\\ManageSaleInvoiceUI.cs",
               "RelativeDocumentMoniker": "InventoryManagementApplication\\Presentation\\ManageSaleInvoiceUI.cs",
               "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Presentation\\ManageSaleInvoiceUI.cs",
               "RelativeToolTip": "InventoryManagementApplication\\Presentation\\ManageSaleInvoiceUI.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAkwGgAAABpAAAAAAAAAA==",
+              "ViewState": "AgIAAO8AAAAAAAAAAAAqwAMBAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-17T20:06:59.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PurchasedInvoice.cs",
-              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
-              "RelativeDocumentMoniker": "InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
-              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
-              "RelativeToolTip": "InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAwwC8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T20:33:29.996Z",
               "EditorCaption": ""
             },
             {
@@ -152,9 +148,52 @@
               "RelativeDocumentMoniker": "InventoryManagementApplication\\Models\\PurchasedItem.cs",
               "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\PurchasedItem.cs",
               "RelativeToolTip": "InventoryManagementApplication\\Models\\PurchasedItem.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-17T19:44:20.455Z",
+              "WhenOpened": "2024-11-20T08:08:02.855Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PurchasedInvoice.cs",
+              "DocumentMoniker": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
+              "RelativeDocumentMoniker": "InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
+              "ToolTip": "S:\\Office Work\\Monocept Training\\Assignments\\InventoryManagementApplication\\InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
+              "RelativeToolTip": "InventoryManagementApplication\\Models\\PurchasedInvoice.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T07:32:39.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "dbo.Products [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.Products.sql",
+              "ToolTip": "dbo.Products [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-20T08:05:49.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "dbo.InventoryStocks [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.InventoryStocks.sql",
+              "ToolTip": "dbo.InventoryStocks [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-20T06:33:51.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "dbo.PurchasedInvoices [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/LAPTOP_0QSF16BR/InventoryManagementDb/True/SqlTable/dbo.PurchasedInvoices.sql",
+              "ToolTip": "dbo.PurchasedInvoices [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-11-20T06:43:17.785Z",
               "EditorCaption": ""
             }
           ]

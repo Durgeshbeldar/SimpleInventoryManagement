@@ -31,6 +31,30 @@ namespace InventoryManagementApplication.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(ConnString);
+
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // One-to-Many Relationship: PurchasedInvoice and PurchasedItem
+
+            modelBuilder.Entity<PurchasedItem>()
+                .HasOne(i => i.PurchasedInvoice)
+                .WithMany(pi => pi.PurchasedItems)
+                .HasForeignKey(i=> i.InvoiceId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Same for Saleitem
+
+            modelBuilder.Entity<SaleItem>()
+             .HasOne(i => i.SaleInvoice)
+             .WithMany(pi => pi.SaleItems)
+             .HasForeignKey(i => i.InvoiceId)
+             .OnDelete(DeleteBehavior.Cascade);
+
+            // We Can Add More But to Make Project little Small So I just Implemented The Things Which Are Neccessory To have 
+            // In Inventory Management
         }
     }
 }

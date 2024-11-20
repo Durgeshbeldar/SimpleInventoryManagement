@@ -249,8 +249,7 @@ namespace InventoryManagementApplication.Presentation
                 $"5.  Delete Purchased Invoice\n" +
                 $"6.  Back To Main Menu\n");
 
-            // We can add more CRUD here but for now I keep it Simple
-               
+            // We can add more CRUD here but for now I kept it Simple           
         }
     }
 }

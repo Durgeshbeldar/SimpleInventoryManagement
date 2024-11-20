@@ -21,11 +21,7 @@ namespace InventoryManagementApplication.Repositories
         {
             _context.SaleInvoices.Add(newInvoice);
             _context.SaveChanges();
-            var existingInvoice = _context.PurchasedInvoices.Where
-                (invoice => invoice.InvoiceDate == newInvoice.InvoiceDate).FirstOrDefault();
-            if (existingInvoice != null)
-                return existingInvoice.InvoiceId;
-            return 0;
+            return newInvoice.InvoiceId;
         }
 
         public void UpdateInvoice(SaleInvoice newInvoice)
