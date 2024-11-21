@@ -102,7 +102,7 @@ namespace InventoryManagementApplication.Presentation
 
             StringBuilder invoiceBuilder = new StringBuilder();
 
-            invoiceBuilder.AppendLine("********************** PURCHASED INVOICE **********************");
+            invoiceBuilder.AppendLine("********************** SALE INVOICE **********************");
             invoiceBuilder.AppendLine($"Invoice ID: {invoiceId}".PadRight(50));
             invoiceBuilder.AppendLine($"Date: {invoiceDate.ToString("dd-MM-yyyy")}".PadRight(50));
             invoiceBuilder.AppendLine($"Customer: {customer.Name}".PadRight(50));
@@ -201,6 +201,7 @@ namespace InventoryManagementApplication.Presentation
                     return saleItems;
 
                 saleItem = GetProductToAdd(products);
+                saleItem.InvoiceId = invoiceId;
                 saleItems.Add(saleItem);
                 Console.WriteLine("Product Added Successfully:");
                 PrintAddedProducts(saleItems);
